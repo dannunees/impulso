@@ -10,7 +10,7 @@ A página logada deve validar se o usuário está autenticado (se existe o token
 - Utilizar o **Next.js** para a construção do projeto;
 - Utilizar o **Tawilwind CSS**, **Material UI** ou o **Bootstrap** para estilização;
 - Validar formulário com o **react-hook-form**, **formik** ou o que o candidato estiver habituado;
-- Para as requisições, utilizar **axios**, **fetch** ou o que o candidato estiver habituado;
+- Para as requisições, utilizar **axios**, **fetch** ou o que o candidato estiver habituado.
 
 ### Material de apoio
 - O logo da RD Ads e design das telas de login e logada estão na pasta **_ material de apoio**.
@@ -18,17 +18,17 @@ A página logada deve validar se o usuário está autenticado (se existe o token
 ### O que iremos avaliar
 - Organização do código;
 - Composição/reutilização de componentes;
-- O motivo de ter escolhido cada lib;
+- O motivo de ter escolhido cada lib.
 
 
 ### Instruções
 
 1. Criar uma página de login utilizando a as cores da RD (Não precisa utilizar todas).
-```
-    Light: #ABDEC2
-    Pure: #0F8143
-    Dark: #004620
-```
+    - ![#001B0C](https://placehold.co/15x15/001B0C/001B0C.png) `#001B0C (Darkest)`
+    - ![#004620](https://placehold.co/15x15/004620/004620.png) `#004620 (Dark)`
+    - ![#0F8143](https://placehold.co/15x15/0F8143/0F8143.png) `#0F8143 (Pure)`
+    - ![#ABDEC2](https://placehold.co/15x15/ABDEC2/ABDEC2.png) `#ABDEC2 (Lighter)`
+    - ![#D7F0E2](https://placehold.co/15x15/D7F0E2/D7F0E2.png) `#D7F0E2 (Lightest)`
 
 2. Na página de login, criar a requisição para logar o usuário:
 
