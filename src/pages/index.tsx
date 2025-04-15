@@ -5,14 +5,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>RD Ads - Front-end challenge</title>
+        <title>Impulso Mídia - Front-end challenge</title>
       </Head>
 
       <main>
         <div>
           <Image
             src="/logo.svg"
-            alt="RD Ads logo"
+            alt="Impulso Mídia logo"
             width={138}
             height={40}
             priority
