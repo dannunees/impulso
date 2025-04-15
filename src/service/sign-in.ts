@@ -9,7 +9,7 @@ export interface SignInServiceRequest {
 export default function getSignInService({user, pass}: SignInServiceRequest): Promise<ResponseDataApi> {
     // Simulate user and password match in DB
     return new Promise((resolve, reject) => setTimeout(() => {
-        if (user === 'candidato@rdads.com.br' && pass === 'Candidato') {
+        if (user === 'candidato@impulsomidia.com' && pass === 'Candidato') {
             return resolve({
                 message: 'Usuário autenticado com sucesso',
                 data: { token: uuidv4(), name: 'Candidato' }
