@@ -81,7 +81,9 @@ export default function Home() {
             </h2>
             <p className="pt-4 font-normal max-w-72">
               Usuário novo?
-              <a href="#">Entre em contato</a>
+              <a href="#" className="underline text-lighter px-1">
+                Entre em contato
+              </a>
               com o administrador.
             </p>
 
