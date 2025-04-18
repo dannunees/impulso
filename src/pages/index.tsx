@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Link from "next/link";
 
 export default function Home() {
   const Router = useRouter();
@@ -82,9 +81,7 @@ export default function Home() {
             </h2>
             <p className="pt-4 font-normal max-w-72">
               Usuário novo?
-              <Link href="/cadastro" className="underline text-lighter px-1">
-                Entre em contato
-              </Link>
+              <a href="#">Entre em contato</a>
               com o administrador.
             </p>
 
