@@ -34,13 +34,16 @@ export default function Home() {
     const login = { user, pass };
 
     try {
-      const res = await fetch("http://localhost:3000/api/sign-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(login),
-      });
+      const res = await fetch(
+        "https://projeto-impulso.vercel.app/api/sign-in",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(login),
+        }
+      );
 
       const data = await res.json();
 
@@ -123,7 +126,7 @@ export default function Home() {
               </a>
 
               <button
-                className="bg-greybtn text-white text-xs font-bold w-full py-2.5 rounded-md mt-14"
+                className="bg-pure text-white text-xs font-bold w-full py-2.5 rounded-md mt-14"
                 type="submit"
               >
                 Entrar
