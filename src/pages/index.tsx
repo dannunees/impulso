@@ -23,13 +23,16 @@ export default function Home() {
     const login = { user: data.user, pass: data.pass };
 
     try {
-      const res = await fetch("http://localhost:3000/api/sign-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(login),
-      });
+      const res = await fetch(
+        "https://projeto-impulso.vercel.app/api/sign-in",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(login),
+        }
+      );
 
       const data = await res.json();
 
