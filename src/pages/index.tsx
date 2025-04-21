@@ -1,48 +1,35 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function Home() {
   const Router = useRouter();
 
-  const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
-  const [errors, setErrors] = useState<{ user?: string; pass?: string }>({});
+  interface FormData {
+    user: string;
+    pass: string;
+  }
 
-  const validate = () => {
-    const newErrors: { user?: string; pass?: string } = {};
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-    if (!user) newErrors.user = "E-mail é obrigatório";
-    else if (!/\S+@\S+\.\S+/.test(user)) newErrors.user = "E-mail inválido";
-
-    if (!pass) newErrors.pass = "Senha é obrigatória";
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate()) return;
-
-    const login = { user, pass };
+  const onSubmit = async (data: FormData) => {
+    const login = { user: data.user, pass: data.pass };
 
     try {
-      const res = await fetch(
-        "https://projeto-impulso.vercel.app/api/sign-in",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(login),
-        }
-      );
+      const res = await fetch("http://localhost:3000/api/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(login),
+      });
 
       const data = await res.json();
 
@@ -50,7 +37,7 @@ export default function Home() {
         localStorage.setItem("token", data.data.token);
         Router.push("/dashbord");
       } else {
-        alert("Dados incorretos! Tente novamente");
+        alert(data?.message || "Dados incorretos! Tente novamente.");
       }
     } catch (error) {
       alert("Erro na requisição");
@@ -87,36 +74,47 @@ export default function Home() {
               com o administrador.
             </p>
 
-            <form onSubmit={handleSubmit} className="pt-16 lg:w-[365px] ">
-              <fieldset className="relative mb-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="pt-16 lg:w-[365px] "
+            >
+              <fieldset className="relative mb-8">
                 <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
                   <MailOutlinedIcon fontSize="small" />
                 </div>
                 <input
                   type="email"
                   placeholder="E-mail"
-                  value={user}
-                  onChange={(e) => setUser(e.target.value)}
+                  {...register("user", {
+                    required: "E-mail é obrigatório",
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: "E-mail inválido",
+                    },
+                  })}
                   className="pl-8 border border-[#6a708679] rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-darkest"
                 />
                 {errors.user && (
-                  <p className="text-red-500 text-xs mt-1">{errors.user}</p>
+                  <p className="text-red-500 text-xs mt-1 absolute">
+                    {errors.user.message}
+                  </p>
                 )}
               </fieldset>
 
-              <fieldset className="relative mb-6">
+              <fieldset className="relative mb-8">
                 <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
                   <LockOutlinedIcon fontSize="small" />
                 </div>
                 <input
                   type="password"
                   placeholder="Senha"
-                  value={pass}
-                  onChange={(e) => setPass(e.target.value)}
+                  {...register("pass", { required: "Senha é obrigatória" })}
                   className="pl-8 border border-[#6a708679] rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-darkest"
                 />
                 {errors.pass && (
-                  <p className="text-red-500 text-xs mt-1">{errors.pass}</p>
+                  <p className="text-red-500 text-xs mt-1 absolute">
+                    {errors.pass.message}
+                  </p>
                 )}
               </fieldset>
 
