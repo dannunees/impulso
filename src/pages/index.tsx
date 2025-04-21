@@ -34,13 +34,13 @@ export default function Home() {
         }
       );
 
-      const data = await res.json();
+      const result = await res.json();
 
-      if (data?.data?.token) {
-        localStorage.setItem("token", data.data.token);
-        Router.push("/dashbord");
+      if (result?.data?.token) {
+        localStorage.setItem("token", result.data.token);
+        Router.push("/dashboard");
       } else {
-        alert(data?.message || "Dados incorretos! Tente novamente.");
+        alert(result?.message || "Dados incorretos! Tente novamente.");
       }
     } catch (error) {
       alert("Erro na requisição");
